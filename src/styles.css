@@ -8,9 +8,10 @@ body {
 }
 
 header {
-  background-color: #f1f1f1;
+  background-color: #f8f9fa;
+  color: #474749;
   padding: 10px;
-  text-align: center;
+  text-align: right;
 }
 
 /* Style the topnav */
@@ -19,21 +20,24 @@ ul.topnav {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  background-color: #333333;
+  background-image: linear-gradient(to bottom right, #1c9a49, #00306e, #011f2a,#29b17b);
+  border-bottom-style: solid;
+  border-color: #999966;
+  /*background-color: #dadce0;*/
 }
 
 /* Style links in topnav */
 ul.topnav li a {
   display: block;
-  color: #f1f1f1;
+  color: #f8f9fa;
   padding: 14px 16px;
   text-decoration: none;
 }
 
 /* Change color on hover */
 ul.topnav li a:hover {
-  background-color: #dddddd;
-  color: black;
+  background-color: #dadce0;
+  color: #474749;
 }
 
 div.flex-container {
@@ -45,9 +49,54 @@ div.flex-container > div {
   margin: 10px;
 }
 
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.menuSidebar {
+  flex: 2%;
+  background-color: #f8f9fa;
+  padding: 5 px;
+}
+
+.btn {
+  background-color: #f8f9fa;
+  border: none;
+  color: #80898d;
+  padding: 12px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  width:100%; 
+  height:50px;
+}
+
+.btn:hover {
+  color: #80898d;
+  background-color: #dadce0;
+}
+
+.statusSidebar {
+  flex: 18%;
+  background-color: #fafafa;
+  padding: 40 px;
+}
+
+.mainContent {
+  flex: 60%;
+  background-color: #dadce0;
+  padding: 40 px;
+}
+
 /* Use media query and show the flex items vertically if screen width is less than 600px */
 @media screen and (max-width:600px) {
-  div.flex-container {
+  .row, div.flex-container {
     flex-direction: column;
+  }
+
+  .menuSidebar {
+    flex-direction: row; /* Ensure horizontal alignment */
+    flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
+    justify-content: center;
   }
 }
