@@ -75,7 +75,7 @@ div.flex-container > div {
 
 .btn:hover {
   color: #474749;
-  background-color: #dadce0;
+  background-color: #f8f9fa;
 }
 
 .statusSidebar {
@@ -154,10 +154,70 @@ div.flex-container > div {
   height: auto;
 }
 
-.mainContent {
+.mainMapContent {
   flex: 60%;
   background-color: #dadce0;
   padding: 40 px;
+  display: none;
+}
+
+.mainMapContent.active {
+  display: block;
+}
+
+.add-container{
+  padding-top: 18%;
+  text-align: center;
+  background-color: #f8f9fa; 
+  width: 100%; 
+  height: 800px;
+}
+
+.edit-container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #fafafa;
+  justify-content: space-around; /* Distributes items with space between them */
+  gap: 9px; /* Adds space between the boxes */
+  padding: 9px;
+  width: 100%;
+  height: auto;
+}
+
+.site-list-container {
+  flex: 25%; 
+  background-color: #f8f9fa;
+  font-size: 14px;
+  color: #474749;
+  padding: 36px;
+  text-align: left;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #80898d;
+  border-radius: 8px;
+  height: auto;
+}
+
+.site-list-box {
+  padding: 0%;
+  text-align: left;
+  background-color: #ffffff;
+  margin: 20px auto;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.site-detail-container {
+  flex: 60%; 
+  background-color: #f8f9fa;
+  font-size: 14px;
+  color: #474749;
+  padding: 36px;
+  text-align: left;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #80898d;
+  border-radius: 8px;
+  height: auto;
 }
 
 /* Use media query and show the flex items vertically if screen width is less than 600px */
