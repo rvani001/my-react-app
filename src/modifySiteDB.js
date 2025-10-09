@@ -1,4 +1,4 @@
-function addSiteAPI(siteName, siteCode, inverter) {
+export function addSiteAPI(siteName, siteCode, inverter) {
     // define the function to add new site to DynamoDB
     // instantiate a headers object
     var myHeaders = new Headers();
@@ -20,7 +20,31 @@ function addSiteAPI(siteName, siteCode, inverter) {
         .catch(error => console.log('error', error));
 }
 
-function getAllSiteAPI() {
+/* Update all sites from DynamoDB and populate when Edit Window is open*/
+const onSelectEditWindow = document.getElementById('editSiteButton');
+onSelectEditWindow.addEventListener('click', function() {
+    getAllSiteAPI();
+})
+
+const addButton = document.getElementById('addSite');
+addButton.addEventListener('click', function() {
+    if (confirm('Are you sure you want to add this site?')) {
+        addSiteAPI(document.getElementById('siteName').value , 
+                   document.getElementById('siteCode').value , 
+                   document.getElementById('inverter').value);
+        getAllSiteAPI(); // Refresh the site list after addition
+    }
+})
+
+const deleteButton = document.getElementById('deleteSite');
+deleteButton.addEventListener('click', function() {
+    if (confirm('Are you sure you want to delete this site?')) {
+        // Call the function to delete the site here
+        getAllSiteAPI(); // Refresh the site list after deletion
+    }
+})
+
+export function getAllSiteAPI() {
     // define the function to add new site to DynamoDB
     // instantiate a headers object
     var myHeaders = new Headers();
@@ -53,7 +77,13 @@ function getAllSiteAPI() {
         .catch(error => console.log('error', error));
 }
 
-function handleSiteSelectChange(selectedSite) {
+
+const selectSiteDisplay = document.getElementById('dynamicSelectSites');
+selectSiteDisplay.addEventListener('change', function() {
+    handleSiteSelectChange(selectSiteDisplay.value);
+})
+
+export function handleSiteSelectChange(selectedSite) {
     document.getElementById('siteDetail').innerHTML = selectedSite;
 }
 /* async function getAllSiteAPI() {

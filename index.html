@@ -50,11 +50,6 @@
 
       </div>
 
-      <!--<div class="statusSidebar">
-        <div id="root"></div>
-        <script type="module" src="/src/main.jsx"></script>
-      </div>-->
-
       <div id="mapWindow" class="mainMapContent active">
         <div id='map' style='width: 100%; height: 800px;'></div>
         <script>
@@ -84,10 +79,7 @@
           <option value="SMA">SMA</option>
           <option value="Others">Others</option>
           </select><br><br>
-          <button type="button" onclick="addSiteAPI(document.getElementById('siteName').value , 
-                                                    document.getElementById('siteCode').value , 
-                                                    document.getElementById('inverter').value)">
-          Add Site to Database</button>
+          <button type="button" id="addSite">Add Site to Database</button>
         </form>  
       </div>
 
@@ -96,21 +88,14 @@
           <div class="site-list-container">
             <h3>Site List</h3>
             <form class="site-list-box">
-              <select id="dynamicSelectSites" onchange="handleSiteSelectChange(this.value)" size="10" style='width: 100%;'></select>
-              <!-- Update all sites when loaded from DynamoDB and populate -->
-              <script>
-                document.addEventListener('DOMContentLoaded', function(){
-                  getAllSiteAPI();
-                });
-              </script>
+              <select id="dynamicSelectSites" size="10" style='width: 100%;'></select>
             </form>
-            <button type="button" onclick="getAllSiteAPI()">Delete Site</button>
+            <button type="button" id="deleteSite">Delete Site</button>
           </div>
           <div class="site-detail-container">
             <h3>Site Detail</h3>
             <p id="siteDetail"> Site Details </p>
             <script> document.getElementById('siteDetail').innerHTML = " "; </script>
-            <!-- Site items will be populated here -->
           </div>
         </div>
       </div>
@@ -124,8 +109,8 @@
       </div>
 
       <!--Javascript to switch content in Main Content Window-->
-      <script src="./src/mainWindow.js"></script>
-      <script src="./src/modifySiteDB.js"></script>
+      <script type="module" src="./src/mainWindow.js"></script>
+      <script type="module" src="./src/modifySiteDB.js"></script>
 
     </div>
 
@@ -137,3 +122,31 @@
 
   </body>
 </html>
+
+
+
+<!--
+<script type="module">
+  import { getAllSiteAPI } from './src/modifySiteDB.js';
+  document.addEventListener('DOMContentLoaded', function(){
+    getAllSiteAPI();
+  });
+</script> 
+
+<script type="module">
+  import { getAllSiteAPI } from './src/modifySiteDB.js';
+  const deleteButton = document.getElementById('deleteSite');
+  deleteButton.addEventListener('click', function() {
+    if (confirm('Are you sure you want to delete this site?')) {
+      // Call the function to delete the site here
+      getAllSiteAPI(); // Refresh the site list after deletion
+    }
+  });
+</script>-->
+
+<!--<select id="dynamicSelectSites" onchange="handleSiteSelectChange(this.value)" size="10" style='width: 100%;'></select>-->
+
+<!--<div class="statusSidebar">
+  <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </div>-->
