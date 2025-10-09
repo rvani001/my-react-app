@@ -12,7 +12,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="/assets/index-DEGVOYgT.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-1dEbBHJQ.css">
   </head>
 
@@ -56,7 +55,6 @@
         <script type="module" src="/src/main.jsx"></script>
       </div>-->
 
-
       <div id="mapWindow" class="mainMapContent active">
         <div id='map' style='width: 100%; height: 800px;'></div>
         <script>
@@ -69,6 +67,7 @@
         </script>
       </div>
 
+      
       <div id="addWindow" class="mainMapContent">
         <form class="add-container">
           <label> Site Name: </label>
@@ -93,23 +92,27 @@
       </div>
 
       <div id="editWindow" class="mainMapContent">
-          <div class="edit-container">
-            <div class="site-list-container">
-              <h3>Site List</h3>
-              <form class="site-list-box">
+        <div class="edit-container">
+          <div class="site-list-container">
+            <h3>Site List</h3>
+            <form class="site-list-box">
               <select id="dynamicSelectSites" onchange="handleSiteSelectChange(this.value)" size="10" style='width: 100%;'></select>
-              <!-- Update all sites from DynamoDB and populate -->
-              <script> getAllSiteAPI() </script>  
-              </form>
-              <button type="button" onclick="getAllSiteAPI()">Delete Site</button>
-            </div>
-            <div class="site-detail-container">
-              <h3>Site Detail</h3>
-              <p id="siteDetail"> Site Details </p>
-              <script> document.getElementById('siteDetail').innerHTML = " "; </script>
-              <!-- Site items will be populated here -->
-            </div>
+              <!-- Update all sites when loaded from DynamoDB and populate -->
+              <script>
+                document.addEventListener('DOMContentLoaded', function(){
+                  getAllSiteAPI();
+                });
+              </script>
+            </form>
+            <button type="button" onclick="getAllSiteAPI()">Delete Site</button>
           </div>
+          <div class="site-detail-container">
+            <h3>Site Detail</h3>
+            <p id="siteDetail"> Site Details </p>
+            <script> document.getElementById('siteDetail').innerHTML = " "; </script>
+            <!-- Site items will be populated here -->
+          </div>
+        </div>
       </div>
 
       <div id="statWindow" class="mainMapContent">
@@ -121,8 +124,12 @@
       </div>
 
       <!--Javascript to switch content in Main Content Window-->
+      <script  src="/src/mainWindow.js"></script>
+      <script  src="/src/modifySiteDB.js"></script>
 
     </div>
+
+
 
     <footer>
       <h2>Footer</h2>
